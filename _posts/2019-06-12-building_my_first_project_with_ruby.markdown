@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Building my First Project with Ruby"
-date:       2019-06-12 09:20:21 +0000
+date:       2019-06-12 05:20:22 -0400
 permalink:  building_my_first_project_with_ruby
 ---
 
@@ -57,4 +57,4 @@ The last method in the Movie class is an instance method (#add_movie_details) an
 
 ### CLI class
 
-To view all the scraped information and each Movie objects’ attributes, a CLI was created to display the list of Top 10 Movies. The user is prompted to choose a number associated with the movie’s rank to view more details on the movie. After a movie’s details are displayed, the user is again prompted to choose to view another movie, go back to the list, or to exit the application. If an invalid entry is given, an error message will show and the user will be asked to provide a valid input. The CLI will continue to prompt the user for input until the user exits the application. This loop was created using the while loop ` while input.downcase != "exit" ` with conditional if statements.
+To view all the scraped information and each Movie objects’ attributes, a CLI was created to display the list of Top 10 Movies. The user is prompted to choose a number associated with the movie’s rank to view more details on the movie. After a movie’s details are displayed, the user is again prompted to choose to view another movie, go back to the list, or to exit the application. If an invalid entry is given, an error message will show and the user will be asked to provide a valid input. The CLI will continue to prompt the user for input until the user exits the application. This loop was created using the while loop `while input.downcase != "exit"` with conditional if statements.
