@@ -14,7 +14,7 @@ For my first coding project, I created a Ruby gem that provides a CLI to view th
 
 I started by creating a Scraper class, with multiple class methods to separate what and where I scrape, that parses the HTML on IMDb’s web page to pull information specified using CSS selectors. This can be a bit tricky, depending on the web page that is being scraped. The Top 10 movies are placed in a table on IMDb’s page (I’ll call this page, with the Top 10 movies, my index page). The thing with tables is that they are specified with table tags, such as <tr> (to indicate a table row) and <td> (to indicate a table cell), without unique identifiers/names. When this is the case and there are multiple tables on the page, Nokogiri pulls all the information within those tags. So, the more specific your CSS selectors are, the more accurate the information you scrape will be.
 
-Since the page I scraped had multiple <tr> tags that were outside the table I needed, I had to remove any excess or irrelevant information. Because the page only reports the Top 10 movies at the weekend box office, I know I only needed ten rows of data. I used the [slice](https://ruby-doc.org/core-2.6.3/Array.html#method-i-slice) method to extract the ten rows of data needed by using ` array[1..10] ` on my nested node. Before slicing the array, I used Pry to determine where to slice. Upon using Pry to view the scraped information, I found that passing the CSS selector ("td.titleColumn a") in as an argument to Nokogiri .css method ` row.css("td.titleColumn a").text ` returned an empty string. I was sure I used the correct CSS selector to retrieve the movie title, so I returned the first element in the collection provided by Nokogiri. 
+Since the page I scraped had multiple <tr> tags that were outside the table I needed, I had to remove any excess or irrelevant information. Because the page only reports the Top 10 movies at the weekend box office, I know I only needed ten rows of data. I used the [slice](https://ruby-doc.org/core-2.6.3/Array.html#method-i-slice) method to extract the ten rows of data needed by using `array[1..10]` on my nested node. Before slicing the array, I used Pry to determine where to slice. Upon using Pry to view the scraped information, I found that passing the CSS selector ("td.titleColumn a") in as an argument to Nokogiri .css method `row.css("td.titleColumn a").text` returned an empty string. I was sure I used the correct CSS selector to retrieve the movie title, so I returned the first element in the collection provided by Nokogiri. 
 ```
 #(Element:0x12fb240 {
   name = "tr",
@@ -34,8 +34,8 @@ Since the page I scraped had multiple <tr> tags that were outside the table I ne
     #(Text "\n                ")]
   }) 
 ```
-Turns out, the first element is the table header (but still preceded with a <tr> tag) and why an empty string was returned when I used the CSS selector to retrieve the movie title text. ` row.css("td.titleColumn a").text ` 
-The second element in the collection was the first movie on the list, so I selected the desired movie elements with ` array[1..10] `
+Turns out, the first element is the table header (but still preceded with a <tr> tag) and why an empty string was returned when I used the CSS selector to retrieve the movie title text `row.css("td.titleColumn a").text`.
+The second element in the collection was the first movie on the list, so I selected the desired movie elements with `array[1..10]`
 
 After grabbing all the rows with movies, I iterated through each movie element and set the value of the attributes I want to pull to a variable. I create symbols to represent my attributes and set the symbols to their respective variables that contain the value in a hash as key/value pairs. Then, I use the shovel method to add the hash to the empty array I created at the beginning of my scraping method. 
 
