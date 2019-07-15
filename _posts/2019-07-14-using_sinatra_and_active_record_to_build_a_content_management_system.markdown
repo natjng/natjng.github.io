@@ -40,7 +40,7 @@ The application controller is separated by domains. Each domain uses RESTful rou
 
 The Wedding Registry app requires user accounts. Users must create an account with a unique username. `User.find_by(username: params[:username]` is used to check if the username already exists in the database. If the username exists, the account will not be created and the user will be prompted to enter new information. Users and their passwords, items, and categories may not be blank. This is ensured by redirecting the user to re-enter the information again.
 
-### Views
+### View
 
 Views are protected by requiring users to be logged in and by ensuring the resource belongs to the logged in user. 
 
