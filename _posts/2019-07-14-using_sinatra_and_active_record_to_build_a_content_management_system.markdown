@@ -54,24 +54,24 @@ A helper method was created to store the User object in an instance variable if 
 helpers do
 def current_user
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    end
+end
 end
 ```
 To make sure that users may only edit or delete a resource that belongs to them,  `.find_by` is used to find the object by it’s id and set it to an instance variable. If the object’s user matches the `current_user` object, the edit form is shown. If not, the user is redirected to the items index.
 ```
 @item = Item.find_by_id(params[:id])
-            if @item && @item.user == current_user
-                erb :'items/edit'
-            else
-                redirect '/items'
-            end
+    if @item && @item.user == current_user
+        erb :'items/edit'
+    else
+        redirect '/items'
+    end
 ```
 
-I ran into an error when my app attempted to load a resource that was deleted, so I used an if statement to redirect the user if the object did not exist. After creating the if statement, my app still broke. Initially, to find the resource, I used `@item = Item.find(params[:id])`. However, I got a different error this time. Error: ActiveRecord::RecordNotFound. I needed a method that would not break the app when calling `if @item` if the item is not in the database. After some research, I found that using `.find_by` will return nil if no record is found. After implementing `.find_by`, my app was able to redirect a user when trying to retrieve a deleted/non-existent resource. 
+I ran into an error when my app attempted to load a resource that was deleted, so I used an if statement to redirect the user if the object does not exist. After creating the if statement, my app still broke. Initially, to find the resource, I used `@item = Item.find(params[:id])`. However, I got a different error after implementing the if statement. Error: ActiveRecord::RecordNotFound. I needed a method that would not break the app when calling `if @item` if the item is not in the database. After some research, I found that using `.find_by` will return nil if no record is found. After implementing `.find_by`, my app was able to redirect a user when trying to retrieve a deleted/non-existent resource. 
 
 ### Final Thoughts
 
-I learned a lot from making my first application that persists and queries data, requires a valid session, and protecting views. There’s definitely more functionality I’d like to add to my app. I hope to improve and expand my application as I continue to learn more. 
+I learned a lot from making my first application that persists and queries data, requires a valid session, and protects views. There’s definitely more functionality I’d like to add to my app. I hope to improve and expand my application as I continue to learn more. 
 
 When creating an application with lots of moving parts, it’s important to know what each method returns and build a habit of checking the functionality of the app after each new addition. That way, you’ll know exactly what’s causing the error when your code breaks.
 
