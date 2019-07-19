@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Basic Ruby Iterators and When to Use Them"
-date:       2019-07-19 22:43:31 +0000
+date:       2019-07-19 18:43:32 -0400
 permalink:  basic_ruby_iterators_and_when_to_use_them
 ---
 
@@ -170,19 +170,19 @@ Use the enumerable based on the return value you need.
 
 All the enumerables below do not alter the original collection. Please note the special case mentioned above when the original collection is altered.
 
-##### Returns the same number of elements (same length) as the original collection.
+### Returns the same number of elements (same length) as the original collection.
 
 `#each` use to return the original collection
 
 `#map (#collect)` use to return transformations
 
-##### Filters the collection based on block.
+### Filters the collection based on block.
 
 `#select` use to return all elements the block evaluates to true, **returns an array**
 
 `#detect (#find)`  use to return the first value the block evaluates to true, **returns a single object**
 
-##### Returns a boolean value.
+### Returns a boolean value.
 
 `#all?` use to test if all elements evaluate to true
 
