@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "User Accounts and Authentication using OAuth"
-date:       2019-08-13 04:47:50 +0000
+date:       2019-08-13 00:47:51 -0400
 permalink:  user_accounts_and_authentication_using_oauth
 ---
 
@@ -10,7 +10,7 @@ I just created my first Ruby on Rails application that requires user accounts fo
 
 I’ll be going over how to allow your application to create an account for users that signup through a third-party and how to login users with application accounts or third-party accounts. 
 
-In this example, I am using the [OmniAuth](“https://github.com/omniauth/omniauth”) gem as the OAuth 2.0 method and Facebook as the strategy (OmniAuth refers to providers as strategies). For the full list of OmniAuth strategies, take your pick [here](“https://github.com/omniauth/omniauth/wiki/List-of-Strategies”). 
+In this example, I am using the [OmniAuth](https://github.com/omniauth/omniauth) gem as the OAuth 2.0 method and Facebook as the strategy (OmniAuth refers to providers as strategies). For the full list of OmniAuth strategies, take your pick [here](https://github.com/omniauth/omniauth/wiki/List-of-Strategies).
 
 ## Gems
 
@@ -79,15 +79,15 @@ Next, create a User class method to use the information in the `auth_hash`. We�
 def self.find_or_create_by_omniauth(auth_hash)
         self.find_or_create_by(uid: auth['uid']) do |u|
             u.name = auth['info']['name']
-u.email = auth['info']['email']
+            u.email = auth['info']['email']
             u.password = SecureRandom.hex
         end
 end
 ```
 
-More user information provided by the Authentication Hash, with Facebook as the strategy, can be viewed [here](“https://github.com/mkdynamic/omniauth-facebook#auth-hash”).
+More user information provided by the Authentication Hash, with Facebook as the strategy, can be viewed [here](https://github.com/mkdynamic/omniauth-facebook#auth-hash).
 
-In the example user model above, we’re using `SecureRandom.hex` to generate a secure and random password for the user. If you’re using the BCrypt gem and the [has_secure_password](“https://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html#method-i-has_secure_password”) method in your user model, a user must have a password in order to be persisted to the database. `SecureRandom.hex` solves that problem for us. 
+In the example user model above, we’re using `SecureRandom.hex` to generate a secure and random password for the user. If you’re using the BCrypt gem and the [has_secure_password](https://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html#method-i-has_secure_password) method in your user model, a user must have a password in order to be persisted to the database. `SecureRandom.hex` solves that problem for us. 
 
 **Tip:** If you’re using BCrypt and `has_secure_password`, don’t forget to use `:password_digest` in your migration, instead of `:password`.
 
