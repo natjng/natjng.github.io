@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Creating Custom Attributes for Serialization"
-date:       2019-09-17 00:51:42 +0000
+date:       2019-09-16 20:51:43 -0400
 permalink:  creating_custom_attributes_for_serialization
 ---
 
@@ -48,7 +48,7 @@ end
 
 To get a user’s high score, I first need all the game instances that belong to the user. After getting all the user’s games, I want to put the game scores in a collection and find the highest value, using `max`. 
 
-By using the above block syntax, that is set to a custom attribute name, I can get the user’s high score in my serialized data for rendering. Here’s what the output JSON would look like: 
+By using the above block syntax, that is set to a custom attribute name, I can get the user’s high score in my serialized data for rendering. Now, here’s what the output JSON looks like: 
 
 ```
 {
