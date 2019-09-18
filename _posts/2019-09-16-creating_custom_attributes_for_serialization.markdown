@@ -41,7 +41,7 @@ class UserSerializer
   attributes :username
 
   attributes :high_score do |object|
-    "#{object.games.map(&:score).max}"
+    object.games.map(&:score).max
   end
 end
 ```
