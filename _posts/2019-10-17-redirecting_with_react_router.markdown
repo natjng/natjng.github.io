@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Redirecting with React Router"
-date:       2019-10-17 21:54:28 +0000
+date:       2019-10-17 17:54:28 -0400
 permalink:  redirecting_with_react_router
 ---
 
@@ -24,7 +24,7 @@ state = {
             ...
         },
         submit: false
-    };
+};
 ```
 
 In our `handleSubmit`, after the action for creating a new post is dispatched, we can reset the form’s local state and set the submit key to true.
@@ -39,7 +39,7 @@ handleSubmit = (event) => {
             },
             submit: true
         });
-    };
+};
 ```
 
 Lastly, before the return statement in our `render()`, we need to add a conditional statement that will redirect the user if the `this.state.submit` is true. 
@@ -53,11 +53,11 @@ render() {
 
         return (
             <Form onSubmit={this.handleSubmit} >
-      ...
-           </Form>
+            ...
+            </Form>
         )
 
-    }
+}
 
 ```
 
