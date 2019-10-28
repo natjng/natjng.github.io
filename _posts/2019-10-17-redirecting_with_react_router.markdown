@@ -14,7 +14,7 @@ Let’s start by importing Redirect in the file we’ll be using it in.
 import { Redirect } from 'react-router-dom';
 ```
 
-I want the user to be redirected to another page (or component) after submitting a form. We can trigger the redirect at the end of a form submission function. 
+I want the user to be redirected to another page (or component) after submitting a form. We can trigger the redirect at the end of a form submission function (e.g. `handleSubmit`). 
 
 Let’s say we have a form to submit a new post. In our React class component, we can set up local state like so:
 
@@ -61,4 +61,47 @@ render() {
 
 ```
 
-In React, when a component’s state is changed, a re-render is triggered. We changed the component’s state using `setState`, which caused the component to re-render and evaluate our conditional statement. If the statement is true, the user will be redirected to the path specified in the React Router Redirect tag. 
+In React, when a component’s state is changed, a re-render is triggered. We updated and changed the component’s state using `setState`, which caused the component to re-render and evaluate our conditional statement. If the statement is true, the user will be redirected to the path specified in the React Router Redirect tag. 
+
+Here’s what it looks like when we put everything together:
+
+```
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+
+class PostForm extends React.Component {
+        state = {
+                post: {
+                    ...
+                },
+                submit: false
+        }
+
+        …
+
+        handleSubmit = (event) => {
+                event.preventDefault();
+                this.props.createPost(this.state.post);
+                this.setState({
+                    post: {
+                        ...
+                    },
+                    submit: true
+                });
+        }
+
+        render() {
+
+                if (this.state.submit) {
+                    return <Redirect to="/posts" />
+                }
+
+                return (
+                    <Form onSubmit={this.handleSubmit} >
+                        ...
+                   </Form>
+                )
+
+        }
+}
+```
