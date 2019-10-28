@@ -53,7 +53,7 @@ render() {
 
         return (
             <Form onSubmit={this.handleSubmit} >
-            ...
+                ...
             </Form>
         )
 
@@ -77,7 +77,7 @@ class PostForm extends React.Component {
                 submit: false
         }
 
-        …
+        ...
 
         handleSubmit = (event) => {
                 event.preventDefault();
