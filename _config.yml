@@ -6,7 +6,7 @@ email: natsetc@gmail.com
 copyright_name: Natalie J
 description: > # this means to ignore newlines until "baseurl:"
   
-baseurl: "/blog" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 twitter_username: natjng
 github_username:  natjng
 
